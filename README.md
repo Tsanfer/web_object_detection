@@ -10,12 +10,4 @@ This action prints "Hello World" or "Hello" + the name of a person to greet to t
 
 ## Outputs
 
-### `time`
-
-The time we greeted you.
-
-## Example usage
-
-uses: actions/hello-world-docker-action@v1
-with:
-who-to-greet: 'Mona the Octocat'
+# web_object_detection

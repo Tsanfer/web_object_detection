@@ -1,0 +1,81 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Apercu;
+  background-image: url(../images/background.svg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #3498db;
+}
+
+.title {
+  text-align: center;
+}
+
+#container {
+  background: #c79ef812;
+  /* height: 500px; */
+  padding: 20px;
+  font-size: 14px;
+  border-radius: 33px;
+  text-align: center;
+}
+
+#text-container {
+  /* height: 100px; */
+  width: 100%;
+  text-align: center;
+}
+
+#instruction {
+  margin-top: 20px;
+}
+
+.result-color {
+  color: #86c69c;
+}
+
+.highlight {
+  opacity: 0.4;
+  background-color: rgba(161, 89, 252, 0.2) !important;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#fileUploader {
+  opacity: 0;
+}
+
+#uploader-btn {
+  background: #faebd700;
+  margin-top: 2em;
+  color: #23abf2;
+  border: solid 3px #23abf2;
+  padding: 0.6em 2em;
+  line-height: 3;
+  font-size: 15px;
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+#uploader-btn:hover {
+  color: white;
+  background-color: #23abf2;
+  border: solid 3px #23abf2;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
