@@ -20,6 +20,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
+<<<<<<< HEAD
           tags: tsanfer/web_object_detection:latest
+=======
+          tags: tsanfer/app:latest
+>>>>>>> 97cc6bf8729a00ab31bd36ac05f1c8dcaecf3e3c
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
