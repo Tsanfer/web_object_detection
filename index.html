@@ -12,10 +12,25 @@
 <!-- 浏览器窗口大小改变时，重新渲染页面 -->
 
 <body onresize="windowResized()">
-  <h1 class='title'>Web 目标检测 demo </h1>
+  <h1 class='title'>Web 目标检测</h1>
   <h2 class='title'>前后端分离</h2>
+  <div class="logo">
+    <a href="https://github.com/Tsanfer/web_object_detection">
+      <img alt="Github Logo" src="images/github_logo.svg" class="logo_image"></img></a>
+    <a href="https://hub.docker.com/repository/docker/tsanfer/web_object_detection">
+      <img alt="Docker Logo" src="images/docker_logo.svg" class="logo_image"></img></a>
+  </div>
+  <div class="logo">
+    <button class="button" onclick="window.open('https://github.com/Tsanfer/web_object_detection')">Github
+      源码</button>
+    <button class="button"
+      onclick="window.open('https://hub.docker.com/repository/docker/tsanfer/web_object_detection')">Docker Hub
+      镜像</button>
+  </div>
+
   <div id="container">
     <img src="images/demo.jpg" id="image" class="center">
+    <div id="captcha"></div>
     <div id="text-container">
       <p id="instruction">
         <button id="uploader-btn" onClick="clickUploader()">上传图片，或者拖拽一张图片到这里</button> <!-- 点击触发上传事件 -->
@@ -28,17 +43,10 @@
     </div>
     <canvas id="canvas"></canvas> <!-- 定义输出结果的画布 -->
   </div>
+
+
+
   <script src="js/index.js"></script> <!-- 引用JavaScript脚本 -->
-
-  <div>jigsaw.init({
-    el: document.getElementById('container'),
-    width: 310, // 可选, 默认310
-    height: 155, // 可选, 默认155
-    onSuccess: function () { ... },
-    onFail: function () { ... },
-    onRefresh: function () { ... }
-    })</div>
-
 </body>
 
 </html>

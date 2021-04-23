@@ -6,11 +6,11 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-const URL = "http://192.168.43.9:4000/api/"
+// const URL = "http://localhost:4000/api/"
 // 后端服务器地址
-// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
-
+var captcha_status;
 
 // function GetUrlPara() {
 //   var protocol = window.location.protocol.toString();
@@ -109,7 +109,13 @@ function handleFiles() {
 
 // button回调函数
 function clickUploader() {
-  fileInput.click();
+  if (captcha_status == "Success") {
+    fileInput.click();
+  }
+  else {
+    $("#uploader-btn").hide("slow", "swing");
+    $("#captcha").show("slow", "swing");
+  }
 }
 
 // 在图片上标出结果
@@ -140,6 +146,18 @@ function drawResult(results) {
   }
 }
 
+jigsaw.init({
+  el: document.getElementById('captcha'),
+  width: 310, // 可选, 默认310
+  height: 155, // 可选, 默认155
+  onSuccess: function () {
+    captcha_status = "Success"
+    $("#captcha").hide("slow", "swing", fileInput.click());
+    $("#uploader-btn").show("slow", "swing");
+  },
+  onFail: function () { captcha_status = "Fail" },
+  onRefresh: function () { captcha_status = "Refresh" }
+})
 
 // 初始化函数
 async function setup() {

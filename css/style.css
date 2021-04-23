@@ -15,6 +15,35 @@ h6 {
   color: #3498db;
 }
 
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+  margin: 20px;
+  display: inline;
+}
+
+.button {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
 .title {
   text-align: center;
 }
@@ -78,4 +107,18 @@ h6 {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+
+#captcha{
+  display:none;
+}
+
+.logo{
+  text-align: center;
+}
+
+.logo_image{
+  height : 100px;
+  margin-left: 50px; 
+  margin-right: 50px;
 }
