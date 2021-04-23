@@ -56,7 +56,7 @@ function windowResized() {
 }); // 默认事件
 
 // 当图片被放下时，进行图像的获取
-dropContainer.addEventListener('drop', gotImage, false)
+dropContainer.addEventListener('drop', gotImage, false);
 
 // 发送图片到服务器，并获取服务器返回的结果，显示在画布上
 function communicate(img_base64_url) {
@@ -94,12 +94,18 @@ function parseFiles(files) {
 
 // drag files回调函数
 function gotImage(e) {
-  const dt = e.dataTransfer;
-  const files = dt.files; // 获取文件内容
-  if (files.length > 1) { // 如果文件数量大于一个
-    console.error('请只上传一个文件');
+  if (captcha_status == "Success") {
+    const dt = e.dataTransfer;
+    const files = dt.files; // 获取文件内容
+    if (files.length > 1) { // 如果文件数量大于一个
+      console.error('请只上传一个文件');
+    }
+    parseFiles(files);
   }
-  parseFiles(files);
+  else {
+    $("#uploader-btn").hide("slow", "swing");
+    $("#captcha").show("slow", "swing");
+  }
 }
 
 // input files回调函数
