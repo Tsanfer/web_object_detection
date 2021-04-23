@@ -6,6 +6,7 @@
   <meta charset="UTF-8"> <!-- 使用UTF-8编码，解决中文显示不正常问题 -->
   <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- 使用外部的JavaScript -->
   <script src="js/jquery.min.js"></script> <!-- 使用jquery函数库 -->
+  <script src="js/jigsaw.min.js"></script> <!-- 使用滑动验证码函数库 -->
 </head>
 
 <!-- 浏览器窗口大小改变时，重新渲染页面 -->
@@ -28,6 +29,16 @@
     <canvas id="canvas"></canvas> <!-- 定义输出结果的画布 -->
   </div>
   <script src="js/index.js"></script> <!-- 引用JavaScript脚本 -->
+
+  <div>jigsaw.init({
+    el: document.getElementById('container'),
+    width: 310, // 可选, 默认310
+    height: 155, // 可选, 默认155
+    onSuccess: function () { ... },
+    onFail: function () { ... },
+    onRefresh: function () { ... }
+    })</div>
+
 </body>
 
 </html>
