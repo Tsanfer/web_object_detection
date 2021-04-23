@@ -6,6 +6,8 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - run: pwd
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
@@ -24,8 +26,8 @@ jobs:
       
       - name: change backend address
         run: |
-          sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' /workspace/web_object_detection/js/index.js
-          sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' /workspace/web_object_detection/js/index.js
+          sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' ./js/index.js
+          sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' ./js/index.js
       - name: Build and push local_version
         id: docker_build_local
         uses: docker/build-push-action@v2
