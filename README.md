@@ -1,3 +1,4 @@
+
 > 参考链接：[AIZOOTech/flask-object-detection | Github](https://github.com/AIZOOTech/flask-object-detection)
 
 # Web object detection
@@ -8,6 +9,9 @@
 ![GitHub](https://img.shields.io/github/license/Tsanfer/web_object_detection)
 
 ![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)
+
+[![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Tsanfer/web_object_detection)
+
 
 **Web 在线目标识别**
 
