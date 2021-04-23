@@ -27,7 +27,7 @@ jobs:
           sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' /workspace/web_object_detection/js/index.js
           sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' /workspace/web_object_detection/js/index.js
       - name: Build and push local_version
-        id: docker_build
+        id: docker_build_local
         uses: docker/build-push-action@v2
         with:
           push: true
