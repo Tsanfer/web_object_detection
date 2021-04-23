@@ -8,7 +8,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/Tsanfer/web_object_detection)
 ![GitHub](https://img.shields.io/github/license/Tsanfer/web_object_detection)
 
-![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)
+[![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)](https://hub.docker.com/repository/docker/tsanfer/web_object_detection)
 
 [![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Tsanfer/web_object_detection)
 
