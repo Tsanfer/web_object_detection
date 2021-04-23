@@ -8,11 +8,13 @@ jobs:
     steps:
 
       - run: |
-          echo $HOME
+          pwd
+          ls -lha
       - uses: actions/checkout@v2
       - run: |
-          echo $HOME
-          cat $HOME/js/index.js
+          pwd
+          ls -lha
+          cat ./js/index.js
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
