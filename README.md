@@ -3,6 +3,10 @@
 # Web object detection
 
 [![Docker ci](https://github.com/Tsanfer/web_object_detection/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Tsanfer/web_object_detection/actions/workflows/docker-publish.yml)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/tsanfer/web_object_detection?label=Docker%20image%20size&sort=date)
+![GitHub repo size](https://img.shields.io/github/repo-size/Tsanfer/web_object_detection)
+![GitHub](https://img.shields.io/github/license/Tsanfer/web_object_detection)
+
 
 **Web 在线目标识别**
 
