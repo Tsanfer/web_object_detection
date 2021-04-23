@@ -7,6 +7,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/Tsanfer/web_object_detection)
 ![GitHub](https://img.shields.io/github/license/Tsanfer/web_object_detection)
 
+![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)
 
 **Web 在线目标识别**
 
