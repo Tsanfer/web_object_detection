@@ -6,7 +6,11 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - run: pwd
+      - run: |
+          pwd
+          ls -lha
+          whoami
+          echo $HOME
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
