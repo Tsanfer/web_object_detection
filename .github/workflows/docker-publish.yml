@@ -6,12 +6,6 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          pwd
-          ls -lha
-          whoami
-          echo $HOME
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -30,6 +24,7 @@ jobs:
           tags: tsanfer/web_object_detection:latest
       
       - name: change backend address
+        uses: actions/checkout@v2
         run: |
           sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' ./js/index.js
           sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' ./js/index.js
