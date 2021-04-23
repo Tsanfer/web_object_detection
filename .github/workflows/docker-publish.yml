@@ -23,8 +23,10 @@ jobs:
           push: true
           tags: tsanfer/web_object_detection:latest
       
-      - name: change backend address
+      # local
+      - name: change directory
         uses: actions/checkout@v2
+      - name: change backend address
         run: |
           sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' ./js/index.js
           sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' ./js/index.js
