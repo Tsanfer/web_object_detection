@@ -6,9 +6,9 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-const URL = "http://localhost:4000/api/"
+// const URL = "http://localhost:4000/api/"
 // 后端服务器地址
-// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
 var captcha_status;
 
