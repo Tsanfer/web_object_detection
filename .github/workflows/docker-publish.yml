@@ -7,10 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - run: |
+          echo $HOME
       - uses: actions/checkout@v2
       - run: |
-          echo ${{env.GITHUB_WORKSPACE}}
-          cat ${{env.GITHUB_WORKSPACE}}/js/index.js
+          echo $HOME
+          cat $HOME/js/index.js
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
