@@ -1,5 +1,6 @@
 image:
   file: .gitpod.Dockerfile
 
-# tasks:
-#   - init: pip3 install -r ./requirements.txt
+tasks:
+  - init: sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' /workspace/web_object_detection/js/index.js
+  - init: sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' /workspace/web_object_detection/js/index.js

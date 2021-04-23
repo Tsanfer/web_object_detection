@@ -31,5 +31,3 @@
 <http://localhost:4000/api/>
 
 后面这段改 URL 是为了实现前后端合并而修改的代码，以达到在本机测试的目的。端口从 5000 改到 4000 是因为，frp 内网穿透的服务器映射端口为 5000，后端实际发送的端口为 4000.
-
-[Docker Hub 链接](https://hub.docker.com/repository/docker/tsanfer/web_object_detection)
