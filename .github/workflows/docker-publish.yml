@@ -37,6 +37,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: change directory
+        uses: actions/checkout@v2
       - name: change backend address
         run: |
           sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' ./js/index.js
