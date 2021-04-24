@@ -1,4 +1,4 @@
-FROM tsanfer/web_object_detection
+FROM tsanfer/web_object_detection:local
 
 # Install custom tools, runtimes, etc.
 # For example "bastet", a command-line tetris clone:
