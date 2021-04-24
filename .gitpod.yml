@@ -2,8 +2,8 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  # - name: change backend address
-  #   command: sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' /workspace/web_object_detection/js/index.js && sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' /workspace/web_object_detection/js/index.js
+  - name: change backend address
+    command: sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' /workspace/web_object_detection/js/index.js && sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' /workspace/web_object_detection/js/index.js
 
   - name: start backend server
     command: python3 /workspace/web_object_detection/app.py
