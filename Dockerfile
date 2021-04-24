@@ -20,6 +20,7 @@ COPY ./ ./
 #   && apt-get clean \
 #   && pip3 install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ \
 #   && chmod 0777 -R /workdir
+#   && cat /workdir/js/index.js | grep "const URL"
 
 # Github云端设置
 RUN apt-get update -qqy \
@@ -30,7 +31,8 @@ RUN apt-get update -qqy \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
   && apt-get clean \
   && pip3 install --no-cache-dir -r requirements.txt \
-  && chmod 0777 -R /workdir
+  && chmod 0777 -R /workdir \
+  && cat /workdir/js/index.js | grep "const URL"
 
 # CMD ["python3", "app.py"]
 ENTRYPOINT ["./run.sh"]
