@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: change backend address
-    command: sed -i 's/http:\/\/raspberry.tsanfer.xyz:5000/https:\/\/4000-${GITPOD_WORKSPACE_URL:8}/g' /workspace/web_object_detection/js/index.js
+    command: sed -i "s/http:\/\/raspberry.tsanfer.xyz:5000/https:\/\/4000-${GITPOD_WORKSPACE_URL:8}/g" /workspace/web_object_detection/js/index.js
 
   - name: start backend server
     command: python3 /workspace/web_object_detection/app.py

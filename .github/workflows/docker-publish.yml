@@ -22,8 +22,6 @@ jobs:
           context: .
           push: true
           tags: tsanfer/web_object_detection:separation
-          cache-from: type=registry,ref=tsanfer/web_object_detection:separation
-          cache-to: type=inline
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
