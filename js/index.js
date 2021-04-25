@@ -6,9 +6,9 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-// const URL = "http://localhost:4000/api/"
+const URL = "https://4000-olive-chickadee-7kfpkwl6.ws-us03.gitpod.io/api/"
 // 后端服务器地址
-const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
 var captcha_status;
 
@@ -65,10 +65,38 @@ function communicate(img_base64_url) {
     type: "POST", //发送的方式
     contentType: "application/json", // 文件的类型
     data: JSON.stringify({ "image": img_base64_url }), //JSON化发送的base64图片数据
-    dataType: "json" // 接受的接收图片的格式
-  }).done(function (response_data) {
-    drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
-  });
+    dataType: "json", // 接受的接收图片的格式
+    // tryCount : 0,
+    // retryLimit : 3,
+    // timeout: 5000,
+    success : function(response_data) {
+      console.log("默认图片识别成功");
+      drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
+    },
+    error : function(xhr, textStatus, errorThrown ) {
+        if (textStatus == 'timeout') {
+            this.tryCount++;
+            if (this.tryCount <= this.retryLimit) {
+                //try again
+                $.ajax(this);
+                return;
+            }
+            alert("重传次数过多");            
+            return;
+        }
+        alert("默认图片加载失败\n请刷新页面，或上传本地图片");
+        if (xhr.status == 500) {
+            //handle error
+            console.log("默认图片加载失败,错误代码500")
+        } else {
+            //handle error
+            console.log("默认图片加载失败,未知错误")
+        }
+    }
+  })
+  // .done(function (response_data) {
+  //   drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
+  // });
 }
 
 // 处理用户上传的图片文件，发送文件到服务器，然后抛出结果
