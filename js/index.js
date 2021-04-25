@@ -6,9 +6,9 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-const URL = "http://localhost:4000/api/"
+// const URL = "http://localhost:4000/api/"
 // 后端服务器地址
-// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
 var captcha_status;
 
@@ -70,7 +70,7 @@ function communicate(img_base64_url) {
     // retryLimit : 3,
     // timeout: 5000,
     success : function(response_data) {
-      console.log("默认图片识别成功");
+      console.log("图片识别成功");
       drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
     },
     error : function(xhr, textStatus, errorThrown ) {
@@ -84,13 +84,13 @@ function communicate(img_base64_url) {
             alert("重传次数过多");            
             return;
         }
-        alert("默认图片加载失败\n请刷新页面，或上传本地图片");
+        alert("图片加载失败\n请刷新页面，或上传本地图片");
         if (xhr.status == 500) {
             //handle error
-            console.log("默认图片加载失败,错误代码500")
+            console.log("图片加载失败,错误代码500")
         } else {
             //handle error
-            console.log("默认图片加载失败,未知错误")
+            console.log("图片加载失败,未知错误")
         }
     }
   })
@@ -101,23 +101,28 @@ function communicate(img_base64_url) {
 
 // 处理用户上传的图片文件，发送文件到服务器，然后抛出结果
 function parseFiles(files) {
-  const file = files[0];
-  const imageType = /image.*/; // 确定图片的类型
-  if (file.type.match(imageType)) { // 如果图片类型匹配
-    warning.innerHTML = '';
-    const reader = new FileReader();
-    reader.readAsDataURL(file); // 将图片转化为base64格式
-    reader.onloadend = () => {
-      image.src = reader.result;
-      // 发送图像到服务器
-      communicate(reader.result);
-
+  const res = files[0];
+  console.log(res);
+  imageConversion.compressAccurately(res,{
+    size:200,
+    width:500,
+  }).then(file=>{
+    console.log(file);
+    const imageType = /image.*/; // 确定图片的类型
+    if (file.type.match(imageType)) { // 如果图片类型匹配
+      warning.innerHTML = '';
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // 将图片转化为base64格式
+      reader.onloadend = () => {
+        image.src = reader.result;
+        // 发送图像到服务器
+        communicate(reader.result);
+      }
+    } else { //如果上传的不是图片文件
+      setup();
+      warning.innerHTML = '请上传图片文件';
     }
-  } else { //如果上传的不是图片文件
-    setup();
-    warning.innerHTML = '请上传图片文件';
-  }
-
+  })
 }
 
 // drag files回调函数
@@ -199,8 +204,8 @@ async function setup() {
   // detectImage();
 
   var canvasTmp = document.createElement("canvas"); // 创建一个画布
-  canvasTmp.width = image.width; // 设置画布的宽度
-  canvasTmp.height = image.height; // 设置画布的高度
+  canvasTmp.width = image.width;
+  canvasTmp.height = image.height;
   var ctx = canvasTmp.getContext("2d"); // 以二维的方式获取图像内容
   ctx.drawImage(image, 0, 0); // 画出图像
   var dataURL = canvasTmp.toDataURL("image/png"); // 生成其他元素可使用的图像

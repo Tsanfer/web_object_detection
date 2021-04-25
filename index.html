@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css"> <!-- 使用外部的JavaScript -->
   <script src="js/jquery.min.js"></script> <!-- 使用jquery函数库 -->
   <script src="js/jigsaw.min.js"></script> <!-- 使用滑动验证码函数库 -->
+  <script src="https://cdn.jsdelivr.net/gh/WangYuLue/image-conversion/build/conversion.js"></script>
 </head>
 
 <!-- 浏览器窗口大小改变时，重新渲染页面 -->
@@ -29,7 +30,7 @@
   </div>
 
   <div id="container">
-    <img src="images/demo.jpg" id="image" class="center">
+    <img src="images/demo.jpg" id="image" class="center" width="500">
     <div id="captcha"></div>
     <div id="text-container">
       <p id="instruction">
@@ -43,8 +44,6 @@
     </div>
     <canvas id="canvas"></canvas> <!-- 定义输出结果的画布 -->
   </div>
-
-
 
   <script src="js/index.js"></script> <!-- 引用JavaScript脚本 -->
 </body>
