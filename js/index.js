@@ -10,7 +10,7 @@ const fileInput = document.getElementById('fileUploader');
 // 后端服务器地址
 const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
-var captcha_status;
+var captcha_status,drop_status;
 
 // function GetUrlPara() {
 //   var protocol = window.location.protocol.toString();
@@ -34,12 +34,16 @@ function preventDefaults(e) {
 // 当窗口大小改变时
 function windowResized() {
   let windowW = window.innerWidth; // 声明一个变量，其值为当前浏览器窗口的宽度
-  if (windowW < 480 && windowW >= 200) { // 当浏览器的宽度在一定的范围内时显示图片内容
+  if (windowW < 540 && windowW >= 200) { // 当浏览器的宽度在一定的范围内时显示图片内容
     dropContainer.style.display = 'block';
+    image.style.width = '100%';
+    canvas.style.width = '100%';
   } else if (windowW < 200) { // 当浏览器的宽度太小时，隐藏图片内容
     dropContainer.style.display = 'none';
   } else {
     dropContainer.style.display = 'block';
+    image.style.width = 'auto';
+    canvas.style.width = 'auto';
   }
 }
 
@@ -101,13 +105,14 @@ function communicate(img_base64_url) {
 
 // 处理用户上传的图片文件，发送文件到服务器，然后抛出结果
 function parseFiles(files) {
-  const res = files[0];
-  console.log(res);
-  imageConversion.compressAccurately(res,{
-    size:200,
-    width:500,
+  const file = files[0];
+  console.log("Before compress:",file);
+    imageConversion.compressAccurately(file,{
+    size: 200,    //The compressed image size is 100kb
+    type: "image/jpeg",
+    width: image.width,
   }).then(file=>{
-    console.log(file);
+    console.log("After compress:",file);
     const imageType = /image.*/; // 确定图片的类型
     if (file.type.match(imageType)) { // 如果图片类型匹配
       warning.innerHTML = '';
@@ -200,16 +205,12 @@ jigsaw.init({
 
 // 初始化函数
 async function setup() {
-  // 对默认图片进行检测
-  // detectImage();
-
-  var canvasTmp = document.createElement("canvas"); // 创建一个画布
-  canvasTmp.width = image.width;
-  canvasTmp.height = image.height;
-  var ctx = canvasTmp.getContext("2d"); // 以二维的方式获取图像内容
-  ctx.drawImage(image, 0, 0); // 画出图像
-  var dataURL = canvasTmp.toDataURL("image/png"); // 生成其他元素可使用的图像
-  communicate(dataURL) // 
+  windowResized();
+  
+  setupImageCanvas = await imageConversion.imagetoCanvas(image)
+  setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
+  console.log("setupImageFile:",setupImageFile);
+  parseFiles([setupImageFile,0]);
 }
 
 setup(); // 初始化
