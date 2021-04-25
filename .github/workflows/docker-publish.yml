@@ -20,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: tsanfer/web_object_detection:latest
+          tags: tsanfer/web_object_detection:separation
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
@@ -37,18 +37,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: change directory
-        uses: actions/checkout@v2
-      - name: change backend address
-        run: |
-          sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' ./js/index.js
-          sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' ./js/index.js
-          cat ./js/index.js | grep "const URL"
       - name: Build and push local_version
         id: docker_build_local
         uses: docker/build-push-action@v2
         with:
           push: true
+          file: ./Docker_local/Dockerfile
           tags: tsanfer/web_object_detection:local
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
