@@ -15,7 +15,7 @@
 
 **Web 在线目标识别**
 
-直接访问 [**在线网址**](http://clouddisk.tsanfer.xyz/flask_ob/) 进行相应操作即可。
+直接访问 [**在线网址**](http://clouddisk.tsanfer.xyz:8000/) 进行相应操作即可。
 
 或者使用 Docker 在本地复制实验构建好的远程镜像进行测试。
 先把 docker 的国内镜像加速配置好，然后运行
