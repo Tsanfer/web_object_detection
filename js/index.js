@@ -11,6 +11,7 @@ const fileInput = document.getElementById('fileUploader');
 const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
 var captcha_status,drop_status;
+var imageHeight;
 
 // function GetUrlPara() {
 //   var protocol = window.location.protocol.toString();
@@ -110,9 +111,10 @@ function parseFiles(files) {
     imageConversion.compressAccurately(file,{
     size: 200,    //The compressed image size is 100kb
     type: "image/jpeg",
-    width: image.width,
+    width: 500,
   }).then(file=>{
     console.log("After compress:",file);
+    // imageHeight = file.height
     const imageType = /image.*/; // 确定图片的类型
     if (file.type.match(imageType)) { // 如果图片类型匹配
       warning.innerHTML = '';
@@ -177,7 +179,7 @@ function drawResult(results) {
     ctx.beginPath();
     ctx.lineWidth = "4";
 
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = "cyan";
     ctx.fillStyle = "red";
 
     ctx.rect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
@@ -207,7 +209,7 @@ jigsaw.init({
 async function setup() {
   windowResized();
   
-  setupImageCanvas = await imageConversion.imagetoCanvas(image)
+  setupImageCanvas = await imageConversion.imagetoCanvas(image);
   setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
   console.log("setupImageFile:",setupImageFile);
   parseFiles([setupImageFile,0]);
