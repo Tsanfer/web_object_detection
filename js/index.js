@@ -6,11 +6,12 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-const URL = "https://4000-pink-ox-xhznb7wo.ws-us03.gitpod.io/api/"
+// const URL = "http://localhost:4000/api/"
 // const URL = "http://clouddisk.tsanfer.xyz:4000/api/"
 
 // 后端服务器地址
-// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+
 
 var captcha_status;
 
@@ -36,7 +37,7 @@ function preventDefaults(e) {
 // 当窗口大小改变时
 function windowResized() {
   let windowW = window.innerWidth; // 声明一个变量，其值为当前浏览器窗口的宽度
-  if (windowW < 1020 && windowW >= 200) { // 当浏览器的宽度在一定的范围内时显示图片内容
+  if (windowW < 720 && windowW >= 200) { // 当浏览器的宽度在一定的范围内时显示图片内容
     dropContainer.style.display = 'block';
     image.style.width = '100%';
     canvas.style.width = '100%';
@@ -44,8 +45,8 @@ function windowResized() {
     dropContainer.style.display = 'none';
   } else {
     dropContainer.style.display = 'block';
-    image.style.width = 1000;
-    canvas.style.width = 1000;
+    image.style.width = 700;
+    canvas.style.width = 700;
   }
 }
 
@@ -87,10 +88,10 @@ function communicate(img_base64_url) {
                 $.ajax(this);
                 return;
             }
-            alert("重传次数过多\n请刷新页面，或重新上传本地图片");            
+            alert("图片上传重传次数过多\n请刷新页面，或重新上传本地图片");            
             return;
         }
-        alert("图片加载失败\n请刷新页面，或上传本地图片");
+        alert("图片上传失败\n请刷新页面，或重新上传本地图片");
         if (xhr.status == 500) {
             //handle error
             console.log("图片加载失败,错误代码500")
