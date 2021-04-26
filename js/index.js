@@ -6,9 +6,9 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-// const URL = "http://localhost:4000/api/"
+const URL = "https://4000-pink-ox-xhznb7wo.ws-us03.gitpod.io/api/"
 // 后端服务器地址
-const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
 var captcha_status,drop_status;
 var imageHeight;
@@ -35,7 +35,7 @@ function preventDefaults(e) {
 // 当窗口大小改变时
 function windowResized() {
   let windowW = window.innerWidth; // 声明一个变量，其值为当前浏览器窗口的宽度
-  if (windowW < 540 && windowW >= 200) { // 当浏览器的宽度在一定的范围内时显示图片内容
+  if (windowW < 1020 && windowW >= 200) { // 当浏览器的宽度在一定的范围内时显示图片内容
     dropContainer.style.display = 'block';
     image.style.width = '100%';
     canvas.style.width = '100%';
@@ -43,8 +43,8 @@ function windowResized() {
     dropContainer.style.display = 'none';
   } else {
     dropContainer.style.display = 'block';
-    image.style.width = 'auto';
-    canvas.style.width = 'auto';
+    image.style.width = 1000;
+    canvas.style.width = 1000;
   }
 }
 
@@ -71,9 +71,9 @@ function communicate(img_base64_url) {
     contentType: "application/json", // 文件的类型
     data: JSON.stringify({ "image": img_base64_url }), //JSON化发送的base64图片数据
     dataType: "json", // 接受的接收图片的格式
-    // tryCount : 0,
-    // retryLimit : 3,
-    // timeout: 5000,
+    tryCount : 0,
+    retryLimit : 2,
+    timeout: 5000,
     success : function(response_data) {
       console.log("图片识别成功");
       drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
@@ -86,7 +86,7 @@ function communicate(img_base64_url) {
                 $.ajax(this);
                 return;
             }
-            alert("重传次数过多");            
+            alert("重传次数过多\n请刷新页面，或重新上传本地图片");            
             return;
         }
         alert("图片加载失败\n请刷新页面，或上传本地图片");
@@ -106,15 +106,14 @@ function communicate(img_base64_url) {
 
 // 处理用户上传的图片文件，发送文件到服务器，然后抛出结果
 function parseFiles(files) {
-  const file = files[0];
-  console.log("Before compress:",file);
-    imageConversion.compressAccurately(file,{
-    size: 200,    //The compressed image size is 100kb
+  const res = files[0];
+  console.log("Before compress:",res);
+  imageConversion.compressAccurately(res,{
+    size: 300,    //The compressed image size is 100kb
     type: "image/jpeg",
-    width: 500,
+    width: image.width,
   }).then(file=>{
     console.log("After compress:",file);
-    // imageHeight = file.height
     const imageType = /image.*/; // 确定图片的类型
     if (file.type.match(imageType)) { // 如果图片类型匹配
       warning.innerHTML = '';
@@ -170,26 +169,33 @@ function drawResult(results) {
   canvas.height = image.height;
   ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(image, 0, 0);
-  for (bboxInfo of results) {
-    bbox = bboxInfo['bbox'];
-    class_name = bboxInfo['name'];
-    score = bboxInfo['conf'];
+  imageConversion.imagetoCanvas(image,{
+    width: image.width,   //result image's width
+  }).then(drawCanvas=>{
+    console.log("drawCanvas:",drawCanvas);
+    ctx.drawImage(drawCanvas, 0, 0);
+    for (bboxInfo of results) { // 边框
+      bbox = bboxInfo['bbox'];
 
-    ctx.beginPath();
-    ctx.lineWidth = "4";
+      ctx.beginPath();
+      ctx.lineWidth = "4";
+      ctx.strokeStyle = "#23abf2";
 
-    ctx.strokeStyle = "cyan";
-    ctx.fillStyle = "red";
+      ctx.rect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
+      ctx.stroke();
+    };
+    for (bboxInfo of results) { // 文字
+      bbox = bboxInfo['bbox'];
+      class_name = bboxInfo['name'];
+      score = bboxInfo['conf'];
 
-    ctx.rect(bbox[0], bbox[1], bbox[2] - bbox[0], bbox[3] - bbox[1]);
-    ctx.stroke();
+      ctx.fillStyle = "#F23A47";
+      ctx.font = "30px Arial";
 
-    ctx.font = "30px Arial";
-
-    let content = class_name + " " + parseFloat(score).toFixed(2);
-    ctx.fillText(content, bbox[0], bbox[1] < 20 ? bbox[1] + 30 : bbox[1] - 5);
-  }
+      let content = class_name + " " + parseFloat(score).toFixed(2);
+      ctx.fillText(content, bbox[0], bbox[1] < 20 ? bbox[1] + 30 : bbox[1] - 5);
+    }
+  });
 }
 
 jigsaw.init({
@@ -210,6 +216,7 @@ async function setup() {
   windowResized();
   
   setupImageCanvas = await imageConversion.imagetoCanvas(image);
+  console.log("setupImageCanvas:",setupImageCanvas);
   setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
   console.log("setupImageFile:",setupImageFile);
   parseFiles([setupImageFile,0]);
