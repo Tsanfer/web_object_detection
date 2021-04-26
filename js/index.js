@@ -6,12 +6,13 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-// const URL = "http://localhost:4000/api/"
-// 后端服务器地址
-const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+const URL = "https://4000-pink-ox-xhznb7wo.ws-us03.gitpod.io/api/"
+// const URL = "http://clouddisk.tsanfer.xyz:4000/api/"
 
-var captcha_status,drop_status;
-var imageHeight;
+// 后端服务器地址
+// const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+
+var captcha_status;
 
 // function GetUrlPara() {
 //   var protocol = window.location.protocol.toString();
@@ -109,7 +110,7 @@ function parseFiles(files) {
   const res = files[0];
   console.log("Before compress:",res);
   imageConversion.compressAccurately(res,{
-    size: 300,    //The compressed image size is 100kb
+    size: 300,    //The compressed image size is 300kb
     type: "image/jpeg",
     width: image.width,
   }).then(file=>{
@@ -215,10 +216,14 @@ jigsaw.init({
 async function setup() {
   windowResized();
   
-  setupImageCanvas = await imageConversion.imagetoCanvas(image);
-  console.log("setupImageCanvas:",setupImageCanvas);
-  setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
-  console.log("setupImageFile:",setupImageFile);
+  let setupImageFile = null;
+  while (setupImageFile == null) {
+    setupImageCanvas = await imageConversion.imagetoCanvas(image);
+    console.log("setupImageCanvas:",setupImageCanvas);
+    setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
+    console.log("setupImageFile:",setupImageFile);
+  }
+
   parseFiles([setupImageFile,0]);
 }
 
