@@ -218,11 +218,15 @@ async function setup() {
   windowResized();
   
   let setupImageFile = null;
-  while (setupImageFile == null) {
-    setupImageCanvas = await imageConversion.imagetoCanvas(image);
-    console.log("setupImageCanvas:",setupImageCanvas);
-    setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
-    console.log("setupImageFile:",setupImageFile);
+
+  setupImageCanvas = await imageConversion.imagetoCanvas(image);
+  console.log("setupImageCanvas:",setupImageCanvas);
+  setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
+  console.log("setupImageFile:",setupImageFile);
+
+  if (setupImageFile == null) {
+    alert("默认图片加载失败\n请刷新页面，或重新上传本地图片");            
+    return;
   }
 
   parseFiles([setupImageFile,0]);

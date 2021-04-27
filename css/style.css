@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Apercu;
-  background-image: url(../images/background.svg);
+  /* background-image: url(../images/background.svg); */
 }
 
 h1,
@@ -16,9 +16,9 @@ h6 {
 }
 
 .button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
+  background-color: #ffffffcc; /* Green */
+  border: 2px solid #4CAF50;
+  color: black;
   padding: 16px 32px;
   text-align: center;
   text-decoration: none;
@@ -28,15 +28,8 @@ h6 {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  
   margin: 20px;
   display: inline;
-}
-
-.button {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #4CAF50;
 }
 
 .button:hover {
@@ -87,7 +80,7 @@ h6 {
 }
 
 #uploader-btn {
-  background: #faebd700;
+  background: #ffffffcc;
   margin-top: 2em;
   color: #23abf2;
   border: solid 3px #23abf2;
@@ -121,4 +114,19 @@ h6 {
   height : 100px;
   margin-left: 50px; 
   margin-right: 50px;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js{
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+#particles-js canvas {
+  z-index: -10;
+  position: fixed;
+  top: 0px;
 }

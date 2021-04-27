@@ -14,6 +14,10 @@
 
 <!-- 浏览器窗口大小改变时，重新渲染页面 -->
 <body onresize="windowResized()">
+
+  <!-- particles.js container -->
+  <div id="particles-js"></div>
+  
   <h1 class='title'>Web 目标检测</h1>
   <h2 class='title'>前后端分离</h2>
   <div class="logo"> <!-- Logo -->
@@ -32,6 +36,7 @@
 
   <div id="container">
     <img src="images/demo.jpg" id="image" class="center"> <!-- 默认图片 -->
+    <p></p>
     <div id="captcha"></div> <!-- 人机识别 -->
     <div id="text-container">
       <p id="instruction">
@@ -45,6 +50,10 @@
     </div>
     <canvas id="canvas"></canvas> <!-- 定义输出结果的画布 -->
   </div>
+
+  <!-- scripts -->
+  <script src="js/particles.js"></script>
+  <script src="js/particles_app.js"></script>
 
   <script src="js/index.js"></script> <!-- 引用JavaScript脚本 -->
 </body>
