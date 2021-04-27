@@ -12,7 +12,6 @@ const fileInput = document.getElementById('fileUploader');
 // 后端服务器地址
 const URL = "http://raspberry.tsanfer.xyz:5000/api/"
 
-
 var captcha_status;
 
 // function GetUrlPara() {
@@ -214,22 +213,24 @@ jigsaw.init({
 })
 
 // 初始化函数
-async function setup() {
+function setup() {
   windowResized();
   
   let setupImageFile = null;
 
-  setupImageCanvas = await imageConversion.imagetoCanvas(image);
-  console.log("setupImageCanvas:",setupImageCanvas);
-  setupImageFile = await imageConversion.canvastoFile(setupImageCanvas);
-  console.log("setupImageFile:",setupImageFile);
+  imageConversion.imagetoCanvas(image).then(setupImageCanvas=>{
+    console.log("setupImageCanvas:",setupImageCanvas);
+    imageConversion.canvastoFile(setupImageCanvas).then(setupImageFile=>{
+      console.log("setupImageFile:",setupImageFile);
+      if (setupImageFile == null || setupImageFile.size < 5000) {
+        alert("默认图片加载失败\n请刷新页面，或重新上传本地图片");            
+      }
+      else{
+        parseFiles([setupImageFile,0]);
+      }
+    });
+  });
 
-  if (setupImageFile == null) {
-    alert("默认图片加载失败\n请刷新页面，或重新上传本地图片");            
-    return;
-  }
-
-  parseFiles([setupImageFile,0]);
 }
 
 setup(); // 初始化
