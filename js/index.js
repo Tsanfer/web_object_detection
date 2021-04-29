@@ -74,7 +74,7 @@ function communicate(img_base64_url) {
     dataType: "json", // 接受的接收图片的格式
     tryCount : 0,
     retryLimit : 2,
-    timeout: 5000,
+    timeout: 10000,
     success : function(response_data) {
       console.log("图片识别成功");
       drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
