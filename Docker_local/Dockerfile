@@ -17,7 +17,7 @@ RUN apt-get update -qqy \
   && pip3 install --no-cache-dir -r requirements.txt \
   && chmod 0777 -R /workdir \
   && sed -i 's/\/\/ const URL = "http:\/\/localhost/const URL = "http:\/\/localhost/g' /workdir/js/index.js \
-  && sed -i 's/const URL = "http:\/\/raspberry/\/\/ const URL = "http:\/\/raspberry/g' /workdir/js/index.js \
+  && sed -i 's/const URL = "http:\/\/clouddisk/\/\/ const URL = "http:\/\/clouddisk/g' /workdir/js/index.js \
   && cat /workdir/js/index.js | grep "const URL"
 
 # CMD ["python3", "app.py"]

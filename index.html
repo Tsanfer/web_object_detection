@@ -13,24 +13,26 @@
 
 
 <!-- 浏览器窗口大小改变时，重新渲染页面 -->
+
 <body onresize="windowResized()">
 
   <!-- particles.js container -->
   <div id="particles-js"></div>
-  
+
   <h1 class='title'>Web 目标检测</h1>
   <h2 class='title'>前后端分离</h2>
-  <div class="logo"> <!-- Logo -->
+  <div class="logo">
+    <!-- Logo -->
     <a href="https://github.com/Tsanfer/web_object_detection">
       <img alt="Github Logo" src="images/github_logo.svg" class="logo_image"></img></a>
     <a href="https://hub.docker.com/r/tsanfer/web_object_detection">
       <img alt="Docker Logo" src="images/docker_logo.svg" class="logo_image"></img></a>
   </div>
-  <div class="logo"> <!-- 链接 -->
+  <div class="logo">
+    <!-- 链接 -->
     <button class="button" onclick="window.open('https://github.com/Tsanfer/web_object_detection')">Github
       源码</button>
-    <button class="button"
-      onclick="window.open('https://hub.docker.com/r/tsanfer/web_object_detection')">Docker Hub
+    <button class="button" onclick="window.open('https://hub.docker.com/r/tsanfer/web_object_detection')">Docker Hub
       镜像</button>
   </div>
 
@@ -42,10 +44,11 @@
       <p id="instruction">
         <button id="uploader-btn" onClick="clickUploader()">上传图片，或者拖拽一张图片到这里</button> <!-- 点击触发上传事件 -->
       <p id="warning" class="result-color"></p>
+      <p class="result-color">请上传jpeg格式的图片，以防止图片上传错误</p>
       <p class="result-color">
         结果是：
       </p>
-      <input name="imgFile" type="file" id="fileUploader" accept="image/*" onChange="handleFiles()">
+      <input name="imgFile" type="file" id="fileUploader" accept="image/jpeg" onChange="handleFiles()">
       <!-- input files回调函数 -->
     </div>
     <canvas id="canvas"></canvas> <!-- 定义输出结果的画布 -->

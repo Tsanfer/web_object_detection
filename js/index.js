@@ -7,10 +7,8 @@ const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
 // const URL = "http://localhost:4000/api/"
-// const URL = "http://clouddisk.tsanfer.xyz:4000/api/"
-
 // 后端服务器地址
-const URL = "http://raspberry.tsanfer.xyz:5000/api/"
+const URL = "http://clouddisk.tsanfer.xyz:4000/api/"
 
 var captcha_status;
 
@@ -72,32 +70,32 @@ function communicate(img_base64_url) {
     contentType: "application/json", // 文件的类型
     data: JSON.stringify({ "image": img_base64_url }), //JSON化发送的base64图片数据
     dataType: "json", // 接受的接收图片的格式
-    tryCount : 0,
-    retryLimit : 2,
+    tryCount: 0,
+    retryLimit: 2,
     timeout: 10000,
-    success : function(response_data) {
+    success: function (response_data) {
       console.log("图片识别成功");
       drawResult(response_data.results); // 等接收到后端返回的数据后，把数据显示在图片上
     },
-    error : function(xhr, textStatus, errorThrown ) {
-        if (textStatus == 'timeout') {
-            this.tryCount++;
-            if (this.tryCount <= this.retryLimit) {
-                //try again
-                $.ajax(this);
-                return;
-            }
-            alert("图片上传重传次数过多\n请刷新页面，或重新上传本地图片");            
-            return;
+    error: function (xhr, textStatus, errorThrown) {
+      if (textStatus == 'timeout') {
+        this.tryCount++;
+        if (this.tryCount <= this.retryLimit) {
+          //try again
+          $.ajax(this);
+          return;
         }
-        alert("图片上传失败\n请刷新页面，或重新上传本地图片");
-        if (xhr.status == 500) {
-            //handle error
-            console.log("图片加载失败,错误代码500")
-        } else {
-            //handle error
-            console.log("图片加载失败,未知错误")
-        }
+        alert("图片上传重传次数过多\n请刷新页面，或重新上传本地图片");
+        return;
+      }
+      alert("图片上传失败\n请刷新页面，或重新上传本地图片");
+      if (xhr.status == 500) {
+        //handle error
+        console.log("图片加载失败,错误代码500")
+      } else {
+        //handle error
+        console.log("图片加载失败,未知错误")
+      }
     }
   })
   // .done(function (response_data) {
@@ -108,13 +106,13 @@ function communicate(img_base64_url) {
 // 处理用户上传的图片文件，发送文件到服务器，然后抛出结果
 function parseFiles(files) {
   const res = files[0];
-  console.log("Before compress:",res);
-  imageConversion.compressAccurately(res,{
+  console.log("Before compress:", res);
+  imageConversion.compressAccurately(res, {
     size: 300,    //The compressed image size is 300kb
     type: "image/jpeg",
     width: image.width,
-  }).then(file=>{
-    console.log("After compress:",file);
+  }).then(file => {
+    console.log("After compress:", file);
     const imageType = /image.*/; // 确定图片的类型
     if (file.type.match(imageType)) { // 如果图片类型匹配
       warning.innerHTML = '';
@@ -170,11 +168,36 @@ function drawResult(results) {
   canvas.height = image.height;
   ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  imageConversion.imagetoCanvas(image,{
+  imageConversion.imagetoCanvas(image, {
     width: image.width,   //result image's width
-  }).then(drawCanvas=>{
-    console.log("drawCanvas:",drawCanvas);
+  }).then(drawCanvas => {
+    console.log("drawCanvas:", drawCanvas);
     ctx.drawImage(drawCanvas, 0, 0);
+
+    for (bboxInfo of results) { //判断图片格式是否支持
+      bbox = bboxInfo['bbox'];
+      class_name = bboxInfo['name'];
+      score = bboxInfo['conf'];
+
+      ctx.fillStyle = "#F23A47";
+      ctx.font = "30px Arial";
+
+      console.log("bbox[]:", bbox);
+      if (bbox[0] > image.width || bbox[2] > image.width) {
+        console.log("不支持的图片格式,边框太宽");
+        ctx.fillStyle = "#F23A47";
+        ctx.font = "30px Arial";
+        ctx.fillText("不支持的图片格式", 50, 50);
+        return;
+      }
+      if (bbox[1] > image.height || bbox[3] > image.height) {
+        console.log("不支持的图片格式,边框太高");
+        ctx.stroke();
+        ctx.fillText("不支持的图片格式", 50, 50);
+        return;
+      }
+    }
+
     for (bboxInfo of results) { // 边框
       bbox = bboxInfo['bbox'];
 
@@ -215,18 +238,18 @@ jigsaw.init({
 // 初始化函数
 function setup() {
   windowResized();
-  
+
   let setupImageFile = null;
 
-  imageConversion.imagetoCanvas(image).then(setupImageCanvas=>{
-    console.log("setupImageCanvas:",setupImageCanvas);
-    imageConversion.canvastoFile(setupImageCanvas).then(setupImageFile=>{
-      console.log("setupImageFile:",setupImageFile);
+  imageConversion.imagetoCanvas(image).then(setupImageCanvas => {
+    console.log("setupImageCanvas:", setupImageCanvas);
+    imageConversion.canvastoFile(setupImageCanvas).then(setupImageFile => {
+      console.log("setupImageFile:", setupImageFile);
       if (setupImageFile == null || setupImageFile.size < 5000) {
-        alert("默认图片加载失败\n请刷新页面，或重新上传本地图片");            
+        alert("默认图片加载失败\n请刷新页面，或重新上传本地图片");
       }
-      else{
-        parseFiles([setupImageFile,0]);
+      else {
+        parseFiles([setupImageFile, 0]);
       }
     });
   });
