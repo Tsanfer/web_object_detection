@@ -6,7 +6,8 @@
 [![Docker ci](https://github.com/Tsanfer/web_object_detection/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Tsanfer/web_object_detection/actions/workflows/docker-publish.yml)
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/tsanfer/web_object_detection?label=Docker%20image%20size&sort=date)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Tsanfer/web_object_detection)
-![GitHub](https://img.shields.io/github/license/Tsanfer/web_object_detection)
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m788067363-2813a393b48f8d4bd77ebbdf?label=Web%20status)](https://stats.uptimerobot.com/BRvBpuVrpD/788067363)
+[![GitHub license](https://img.shields.io/github/license/Tsanfer/web_object_detection)](https://github.com/Tsanfer/web_object_detection/blob/main/LICENSE)
 
 [![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)](https://hub.docker.com/r/tsanfer/web_object_detection)
 
