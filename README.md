@@ -19,7 +19,7 @@
 1. 先把 docker 的国内镜像加速配置好，然后输入如下命令
 2. 
 ``` sh
-docker run -d --name=zfile \
+docker run -d --name=object_detection \
   -p 4000:4000 -p 8000:8000 \
   tsanfer/web_object_detection:local
 ```
