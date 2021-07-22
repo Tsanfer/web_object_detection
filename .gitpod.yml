@@ -4,13 +4,15 @@ image:
 ports:
   - port: 4000
     onOpen: ignore
+    visibility: public
   - port: 8000
     onOpen: open-preview
+    visibility: public
 
 tasks:
   - name: change backend address
     command: |
-      sed -i 's/const URL = "http:\/\/clouddisk/\/\/ const URL = "http:\/\/clouddisk/g' /workspace/web_object_detection/js/index.js
+      sed -i 's/const URL = "http:\/\/hpc/\/\/ const URL = "http:\/\/hpc/g' /workspace/web_object_detection/js/index.js
       sed -i "/localhost/i\const URL = \"https:\/\/4000-${GITPOD_WORKSPACE_URL:8}/api/\"" js/index.js
 
   - name: start backend server

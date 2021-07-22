@@ -48,6 +48,6 @@ def add_headers(response):  # 添加HTTP相应头信息
 
 
 if __name__ == '__main__':  # 如果此文件被直接运行时
-  # 运行程序（开启debug，host为0.0.0.0）
-  app.run(debug=True, host='0.0.0.0', port='4000')
+  # 运行程序（host为0.0.0.0）
+  app.run(host='0.0.0.0', port='4000')
   # app.run(debug=True, host='0.0.0.0')
