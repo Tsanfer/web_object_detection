@@ -17,12 +17,7 @@
 
 使用方法二：使用 Docker 在本地复制实验构建好的远程镜像进行测试。 [![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)](https://hub.docker.com/r/tsanfer/web_object_detection)
 1. 先把 docker 的国内镜像加速配置好，然后输入如下命令
-2. 
-``` sh
-docker run -d --name=object_detection \
-  -p 4000:4000 -p 8000:8000 \
-  tsanfer/web_object_detection:local
-```
+2. `docker run -d --name=object_detection -p 4000:4000 -p 8000:8000 tsanfer/web_object_detection:local`
 3. 然后用浏览器打开本地的8000端口就能看见效果了。(http://127.0.0.1:8000 或 http://localhost:8000)
 
 使用方法三：使用在线IDE查看：[![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Tsanfer/web_object_detection)
