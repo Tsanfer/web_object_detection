@@ -5,8 +5,6 @@ from backend.config import id2name
 
 PATH_TO_CKPT = 'models/ssdlite_mobilenet_v2.pb'
 
-
-
 def load_model():
   detection_graph = tf.Graph()
   with detection_graph.as_default():

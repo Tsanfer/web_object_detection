@@ -5,7 +5,7 @@ import base64  # 导入base64
 import io  # 导入文件IO
 import os  # 导入操作系统接口
 
-from backend.tf_inference import load_model, inference  # 导入目标检测的相关函数
+from backend.tf2_inference import load_model, inference  # 导入目标检测的相关函数
 
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # 配置操作系统环境变量，设置仅有GPU0可用
 

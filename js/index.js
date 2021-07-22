@@ -6,10 +6,10 @@ const warning = document.getElementById('warning');
 const fileInput = document.getElementById('fileUploader');
 
 // 本地调试
-const URL = "https://4000-red-armadillo-zv28v57b.ws-us10.gitpod.io/api/"
+const URL = "https://4000-gray-ostrich-s7zfp9fj.ws-us10.gitpod.io/api/"
 // const URL = "http://localhost:4000/api/"
 // 后端服务器地址
-// const URL = "http://hpc.tsanfer.xyz:4000/api/"
+// // const URL = "http://hpc.tsanfer.xyz:4000/api/"
 
 var captcha_status;
 
