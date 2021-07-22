@@ -21,3 +21,6 @@
 3. 然后用浏览器打开本地的8000端口就能看见效果了。(http://127.0.0.1:8000 或 http://localhost:8000)
 
 使用方法三：使用在线IDE查看：[![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Tsanfer/web_object_detection)
+
+## 演示PPT
+[演示PPT](https://show.zohopublic.com.cn/publish/vo1t583c9d53630cf48e3a4deb802392860c2)
