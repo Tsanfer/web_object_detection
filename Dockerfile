@@ -30,6 +30,7 @@ RUN apt-get update -qqy \
   && apt-get install -y git unzip vim \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
   && apt-get clean \
+  && python -m pip install -U --force-reinstall pip \
   && pip3 install --no-cache-dir -r requirements.txt \
   && chmod 0777 -R /workdir \
   && cat /workdir/js/index.js | grep "const URL"
