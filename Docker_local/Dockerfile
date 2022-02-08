@@ -9,8 +9,8 @@ COPY ./ ./
 # Github云端设置
 RUN apt-get update -qqy \
 #  && apt-get install -y build-essential cmake pkg-config libx11-dev libatlas-base-dev libgtk-3-dev libboost-python-dev python3.6-dev python3-pip wget\
-  && python3 -m pip install -U --force-reinstall pip \
   && apt-get install -y python3.6-dev python3-pip\
+  && python3 -m pip install -U --force-reinstall pip \
   && apt-get update \
   && apt-get install -y git unzip vim \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
