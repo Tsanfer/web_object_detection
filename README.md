@@ -35,3 +35,6 @@
 
 ## 演示PPT
 [演示PPT](https://show.zohopublic.com.cn/publish/vo1t583c9d53630cf48e3a4deb802392860c2)
+
+## 识别效果
+![image](https://user-images.githubusercontent.com/39004010/158775271-4af97caf-09f5-4f8b-8533-0ce25a15dcea.png)
