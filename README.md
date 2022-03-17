@@ -13,6 +13,17 @@
 
 [![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Tsanfer/web_object_detection)
 
+---
+
+相较于原仓库，此仓库加入了：
+1. 使用了 CI/CD，通过 Github Actions 来自动更新和构建 Docker 镜像
+2. 前端网页加入了滑动人机验证
+3. 在本地图片传到后端之前，进行了图像压缩（仅支持 jpeg 格式图片）
+4. 配置了在线 IDE 环境 Gitpod
+5. 自建服务器在线网站用于测试项目效果（因为服务器性能较低，有时可能网站无法访问，，，因为租的服务器只有 512MB 的内存）
+
+---
+
 使用方法一：直接访问 [**在线网址**](http://hpc.tsanfer.com:8000/) 进行相应操作即可。
 
 使用方法二：使用 Docker 在本地复制实验构建好的远程镜像进行测试。 [![Docker Image](https://img.shields.io/badge/Docker%20Image-2496ED?style=flat-square&logo=Docker&logoColor=white)](https://hub.docker.com/r/tsanfer/web_object_detection)
