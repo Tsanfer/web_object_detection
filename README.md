@@ -33,6 +33,8 @@
 
 使用方法三：使用在线IDE查看：[![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/Tsanfer/web_object_detection)
 
+> 可自行更改[后端服务器地址](https://github.com/Tsanfer/web_object_detection/blob/b104fff5b9513b40122cf4a6947d8915bf588477/js/index.js#L10-L11)
+
 ## 演示PPT
 [演示PPT](https://show.zohopublic.com.cn/publish/vo1t583c9d53630cf48e3a4deb802392860c2)
 
