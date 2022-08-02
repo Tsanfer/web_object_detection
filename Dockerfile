@@ -27,7 +27,7 @@ RUN apt-get update -qqy \
   #  && apt-get install -y build-essential cmake pkg-config libx11-dev libatlas-base-dev libgtk-3-dev libboost-python-dev python3.6-dev python3-pip wget\
   && apt-get install -y python3 \
   && echo "apt-get install -y python DONE!!!" \
-  && python -m pip install -U --force-reinstall pip \
+  && python3 -m pip install -U --force-reinstall pip \
   && echo "python -m pip install -U --force-reinstall pip DONE!!!" \
   && apt-get update \
   && echo "apt-get update DONE!!!" \
