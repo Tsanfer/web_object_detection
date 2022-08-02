@@ -25,9 +25,9 @@ COPY ./ ./
 RUN apt-get update -qqy \
   && echo "apt-get update -qqy DONE!!!" \
   #  && apt-get install -y build-essential cmake pkg-config libx11-dev libatlas-base-dev libgtk-3-dev libboost-python-dev python3.6-dev python3-pip wget\
-  && apt-get install -y python3.6-dev python3-pip \
-  && echo "apt-get install -y python3.6-dev python3-pip DONE!!!" \
-  && python3 -m pip install -U --force-reinstall pip \
+  && apt-get install -y python \
+  && echo "apt-get install -y python DONE!!!" \
+  && python -m pip install -U --force-reinstall pip \
   && echo "python -m pip install -U --force-reinstall pip DONE!!!" \
   && apt-get update \
   && echo "apt-get update DONE!!!" \
@@ -37,7 +37,7 @@ RUN apt-get update -qqy \
   && echo "rm -rf /var/lib/apt/lists/* /var/cache/apt/* DONE!!!" \
   && apt-get clean \
   && echo "apt-get clean DONE!!!" \
-  && pip3 install --no-cache-dir -r requirements.txt \
+  && pip install --no-cache-dir -r requirements.txt \
   && echo "ip3 install --no-cache-dir -r requirements.txt DONE!!!" \
   && chmod 0777 -R /workdir \
   && echo "chmod 0777 -R /workdir DONE!!!" \
