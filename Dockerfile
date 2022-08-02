@@ -22,20 +22,21 @@ COPY ./ ./
 #   && cat /workdir/js/index.js | grep "const URL"
 
 # Github云端设置
-RUN apt-get update -qqy \
-  && echo "apt-get update -qqy DONE!!!" \
+RUN apt update -y \
+  && echo "apt update -y DONE!!!" \
   #  && apt-get install -y build-essential cmake pkg-config libx11-dev libatlas-base-dev libgtk-3-dev libboost-python-dev python3.6-dev python3-pip wget\
-  && apt-get install -y python3 \
-  && echo "apt-get install -y python DONE!!!" \
-  && python3 -m pip install -U --force-reinstall pip \
+  && apt install software-properties-common -y \
+  && add-apt-repository ppa:deadsnakes/ppa \
+  && apt update -y \
+  && apt install python -y \
+  && echo "apt install python -y DONE!!!" \
+  && python -m ensurepip --upgrade \
   && echo "python -m pip install -U --force-reinstall pip DONE!!!" \
-  && apt-get update \
-  && echo "apt-get update DONE!!!" \
-  && apt-get install -y git unzip vim \
+  && apt install -y git unzip vim \
   && echo "aapt-get install -y git unzip vim DONE!!!" \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
   && echo "rm -rf /var/lib/apt/lists/* /var/cache/apt/* DONE!!!" \
-  && apt-get clean \
+  && apt clean \
   && echo "apt-get clean DONE!!!" \
   && pip install --no-cache-dir -r requirements.txt \
   && echo "pip install --no-cache-dir -r requirements.txt DONE!!!" \
