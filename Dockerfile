@@ -25,12 +25,12 @@ COPY ./ ./
 RUN apt update -y \
   && echo "apt update -y DONE!!!" \
   #  && apt-get install -y build-essential cmake pkg-config libx11-dev libatlas-base-dev libgtk-3-dev libboost-python-dev python3.6-dev python3-pip wget\
-  && apt install software-properties-common -y \
-  && add-apt-repository ppa:deadsnakes/ppa \
-  && apt update -y \
-  && apt install python -y \
+#   && apt install software-properties-common -y \
+#   && add-apt-repository ppa:deadsnakes/ppa \
+#   && apt update -y \
+  && apt install python3.10 -y \
   && echo "apt install python -y DONE!!!" \
-  && python -m ensurepip --upgrade \
+  && python3 -m ensurepip --upgrade \
   && echo "python -m pip install -U --force-reinstall pip DONE!!!" \
   && apt install -y git unzip vim \
   && echo "aapt-get install -y git unzip vim DONE!!!" \
