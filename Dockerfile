@@ -30,7 +30,7 @@ RUN apt update -y \
 #   && apt update -y \
   && apt install python3.10 -y \
   && echo "apt install python -y DONE!!!" \
-  && python3 -m ensurepip --upgrade \
+  && python -m ensurepip --upgrade \
   && echo "python -m pip install -U --force-reinstall pip DONE!!!" \
   && apt install -y git unzip vim \
   && echo "aapt-get install -y git unzip vim DONE!!!" \
