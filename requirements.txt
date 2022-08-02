@@ -1,5 +1,5 @@
-flask
-numpy==1.15.0
-pillow
-tensorflow
+flask==2.2.0
+numpy==1.23.0
+pillow==9.2.0
+tensorflow==2.9.1
 
