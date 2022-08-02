@@ -2,7 +2,7 @@
 # FROM daocloud.io/library/ubuntu:18.04
 
 # Github云端设置
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 WORKDIR /workdir
 
@@ -38,7 +38,7 @@ RUN apt-get update -qqy \
   && apt-get clean \
   && echo "apt-get clean DONE!!!" \
   && pip install --no-cache-dir -r requirements.txt \
-  && echo "ip3 install --no-cache-dir -r requirements.txt DONE!!!" \
+  && echo "pip install --no-cache-dir -r requirements.txt DONE!!!" \
   && chmod 0777 -R /workdir \
   && echo "chmod 0777 -R /workdir DONE!!!" \
   && cat /workdir/js/index.js | grep "const URL" \
