@@ -36,7 +36,7 @@
 > 可自行更改[后端服务器地址](https://github.com/Tsanfer/web_object_detection/blob/b104fff5b9513b40122cf4a6947d8915bf588477/js/index.js#L10-L11)
 
 ## 演示PPT
-[演示PPT](https://show.zohopublic.com.cn/publish/vo1t583c9d53630cf48e3a4deb802392860c2)
+[演示PPT](http://clouddisk.tsanfer.com:8080/1/Document)
 
 ## 识别效果
 ![image](https://user-images.githubusercontent.com/39004010/158775271-4af97caf-09f5-4f8b-8533-0ce25a15dcea.png)
